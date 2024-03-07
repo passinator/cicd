@@ -9,4 +9,4 @@ jobs:
             - uses: deepakputhraya/action-branch-name@master
               with:
                   regex: "KAN-[0-9]+/(feature|bug|hotfix)/[a-zA-Z-]+"
-                  ignore: stage,prod
+                  ignore: develop,stage,prod
