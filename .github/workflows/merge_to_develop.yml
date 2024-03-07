@@ -1,22 +1,14 @@
 name: Branch Naming Policy Action
 
-on:
-    create:
-    delete:
-    pull_request:
-        branches:
-            - develop
+on: pull_request
 
 jobs:
-    branch-naming-policy:
+    branch-naming-rules:
         runs-on: ubuntu-latest
-
         steps:
-            - name: Checkout
-              uses: actions/checkout@v3
-
-            - name: Check Branch Name Format
-              id: check_branch_format
-              if: github.ref_type == 'branch' || github.ref_type == 'pull_request'
+            - uses: deepakputhraya/action-branch-name@master
               with:
-                  regex: 'KAN-\d+/(feature|bug|hotfix)/[a-zA-Z-]+'
+                  regex: "KAN-[0-9]+/(feature|bug|hotfix)/[a-zA-Z-]+"
+                  ignore: "stage,prod"
+                  min_length: 5
+                  max_length: 20
